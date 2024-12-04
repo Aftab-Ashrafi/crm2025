@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import java.util.Date;
 @Getter
+
 public class ErrorDetails {
     private  final Date date;
     private  final String message;
@@ -18,15 +19,4 @@ public class ErrorDetails {
 
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getRequest() {
-        return request;
-    }
 }

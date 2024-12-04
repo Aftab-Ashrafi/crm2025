@@ -11,13 +11,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/employee")
 public class EmployeeController {
 //https://localhost:8080/api/v1/Employee/add
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
        this.employeeService = employeeService;
@@ -26,7 +27,7 @@ public class EmployeeController {
     @PostMapping("/add")
     public ResponseEntity<?>addEmployee(@Valid@RequestBody EmployeeDto employeeDto, BindingResult result) {
         if(result.hasErrors()){
-            return new ResponseEntity<>(result.getFieldError().getDefaultMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(Objects.requireNonNull(result.getFieldError()).getDefaultMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         EmployeeDto employeeDto1=employeeService.addEmployee(employeeDto);

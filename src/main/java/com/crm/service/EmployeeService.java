@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+@SuppressWarnings("ALL")
 @Slf4j
 @Service
 public class EmployeeService {
@@ -30,8 +31,7 @@ public class EmployeeService {
     public EmployeeDto addEmployee(EmployeeDto employeeDto) {
         Employee employee= mapToEntity(employeeDto);
         Employee emp= employeeRepository.save(employee);
-        EmployeeDto employeeDto1= mapToDto(emp);
-        return employeeDto1;
+        return mapToDto(emp);
     }
     public void deleteEmployee(Long id){
         employeeRepository.deleteById(id);
@@ -41,8 +41,7 @@ public class EmployeeService {
         Employee employee =mapToEntity(dto);
         employee.setId(id);
         Employee updateEmployee =employeeRepository.save(employee);
-        EmployeeDto employeeDto=mapToDto(updateEmployee);
-        return employeeDto;
+        return mapToDto(updateEmployee);
     }
 
     public List<EmployeeDto> getEmployee(int pageNo, int pageSize, String sortBy, String sortDir) {
@@ -50,8 +49,7 @@ public class EmployeeService {
       Pageable page = PageRequest.of(pageNo,pageSize, sort);
         Page<Employee> all = employeeRepository.findAll(page);
        List<Employee>employees= all.getContent();
-        List<EmployeeDto> dto=employees.stream().map(e->mapToDto(e)).collect(Collectors.toList());
-        return dto;
+        return employees.stream().map(this::mapToDto).collect(Collectors.toList());
 
     }
 
@@ -59,22 +57,18 @@ public class EmployeeService {
 
     EmployeeDto mapToDto(Object employee){
 
-    EmployeeDto dto =modelMapper.map(employee, EmployeeDto.class);
-
-        return dto;
+        return modelMapper.map(employee, EmployeeDto.class);
     }
     Employee mapToEntity(EmployeeDto dto){
-        Employee employee=modelMapper.map(dto, Employee.class);
-        return employee;
+        return modelMapper.map(dto, Employee.class);
 
     }
 
     public EmployeeDto getEmployeeById(long empId) {
         Employee employee = employeeRepository.findById(empId).orElseThrow(
                 //supplier concept of functional Interface.
-                ()->new ResourceNotFound("Record not found by Id"+empId)
+                ()->new ResourceNotFound(STR."Record not found by Id\{empId}")
         );
-        EmployeeDto dto=mapToDto(employee);
-     return dto;
+        return mapToDto(employee);
     }
 }

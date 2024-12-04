@@ -19,10 +19,4 @@ public class Bus {
     @Column(name = "name")
     private String name;
 
-//    @ManyToMany
-//    @JoinTable(name = "bus_stops",
-//            joinColumns = @JoinColumn(name = "bus_id"),
-//            inverseJoinColumns = @JoinColumn(name = "stops_id"))
-//    private Set<Stops> stops = new LinkedHashSet<>();
-
 }

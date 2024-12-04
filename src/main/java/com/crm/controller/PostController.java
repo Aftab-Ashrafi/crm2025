@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/posts")
 public class PostController {
-    private PostRepository postRepository;
-    private CommentsRepository  commentsRep;
+    private final PostRepository postRepository;
 
-    public PostController(PostRepository postRepository, CommentsRepository commentsRep) {
+    public PostController(PostRepository postRepository, CommentsRepository ignoredCommentsRep) {
         this.postRepository = postRepository;
-        this.commentsRep = commentsRep;
     }
     @PostMapping
     public String createPost(

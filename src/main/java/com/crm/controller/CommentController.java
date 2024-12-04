@@ -7,11 +7,12 @@ import com.crm.repository.PostRepository;
 import org.springframework.web.bind.annotation.*;
 import com.crm.entity.Comments;
 
+@SuppressWarnings("ALL")
 @RestController
 @RequestMapping("/api/v1/comments")
 public class CommentController {
-    private PostRepository postRepository;
-    private CommentsRepository commentsRepository;
+    private final PostRepository postRepository;
+    private final CommentsRepository commentsRepository;
     
     public CommentController(PostRepository postRepository, CommentsRepository commentsRepository) {
         this.postRepository = postRepository;
