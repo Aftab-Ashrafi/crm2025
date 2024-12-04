@@ -1,8 +1,7 @@
 package com.crm.exception;
 
 import com.crm.payload.ErrorDetails;
-import org.springframework.aop.config.AdvisorComponentDefinition;
-import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

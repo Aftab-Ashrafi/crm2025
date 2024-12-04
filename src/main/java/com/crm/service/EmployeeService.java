@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class EmployeeService {
-    private  EmployeeRepository employeeRepository;
-    private ModelMapper modelMapper;
+    private  final EmployeeRepository employeeRepository;
+    private  final      ModelMapper modelMapper;
 
     public EmployeeService(EmployeeRepository employeeRepository) {
        this.employeeRepository = employeeRepository;

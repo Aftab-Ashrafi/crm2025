@@ -3,7 +3,7 @@ package com.crm.controller;
 import com.crm.entity.Post;
 import com.crm.repository.CommentsRepository;
 import com.crm.repository.PostRepository;
-import org.hibernate.annotations.Comment;
+
 import org.springframework.web.bind.annotation.*;
 import com.crm.entity.Comments;
 
